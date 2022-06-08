@@ -4,38 +4,42 @@ import Login from './components/login.vue'
 import Home from './components/home.vue'
 import welcome from './components/welcome.vue'
 import users from './components/user/users.vue'
+import Rights from './components/power/rights.vue'
+import Roles from './components/power/roles.vue'
 Vue.use(VueRouter);
 
-const router=new VueRouter({
+const router = new VueRouter({
     routes: [
         {
             path: '/',
-            redirect:'/login'
+            redirect: '/login'
         },
         {
             path: '/login',
-            component:Login
+            component: Login
         },
         {
             path: '/home',
             component: Home,
-            redirect:'/welcome',
+            redirect: '/welcome',
             children: [
                 {
                     path: '/welcome',
-                    component:welcome
+                    component: welcome
                 },
                 {
                     path: '/users',
-                    component:users
-                }
+                    component: users
+                },
+                { path: '/rights', component: Rights },
+                {path:'/roles',component:Roles}
             ]
         }
-        
+
     ]
 })
 // 挂载路由导航守卫
-router.beforeEach((to,from,next) => {
+router.beforeEach((to, from, next) => {
     // next() 放行   next('/login')强制跳转
 
     if (to.path === '/login') return next()
