@@ -15,7 +15,7 @@
           <el-col :span="8">
             <el-input
               placeholder="请输入内容"
-              v-model="queryInfo.query"
+              v-model="query"
               clearable
               @clear="getUserList"
             >
@@ -83,18 +83,7 @@
           </el-table-column>
         </el-table>
 
-        <!-- 分页区域 -->
-        <el-pagination
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-          :current-page="queryInfo.pagenum"
-          :page-sizes="[1, 2, 5, 10]"
-          :page-size="queryInfo.pagesize"
-          layout="total, sizes, prev, pager, next, jumper"
-          :total="total"
-        >
-          <!-- layout用来显示页面上都显示那些布局结构 -->
-        </el-pagination>
+        <Page url="users" @return="getPage" :query="query" ref="page"></Page>
       </div>
     </el-card>
     <!-- 添加用户的对话框 -->
@@ -160,7 +149,7 @@
       title="分配角色"
       :visible.sync="setRoleDivialogVisible"
       width="50%"
-      @close='setRoleDialogClosed'
+      @close="setRoleDialogClosed"
     >
       <div>
         <p>当前的用户: {{ userinfo.username }}</p>
@@ -187,7 +176,12 @@
 </template>
 
 <script>
+import Page from "@/components/Page";
+
 export default {
+  components: {
+    Page,
+  },
   data() {
     // 验证邮箱的规则
     var checkEmail = (rule, value, cb) => {
@@ -209,13 +203,7 @@ export default {
     };
     // 把get参数定义在此---
     return {
-      queryInfo: {
-        query: "",
-        // 当前的页数
-        pagenum: 1,
-        // 每页显示条数
-        pagesize: 2,
-      },
+      query: "",
       userlist: [],
       total: 0,
       // 控制用户添加对话框的显示与隐藏
@@ -311,33 +299,12 @@ export default {
       selectRoleId: "",
     };
   },
-  created() {
-    // 在此生命周期函数发起该组件的首屏数据请求
-    this.getUserList();
-  },
   methods: {
-    async getUserList() {
-      const { data: res } = await this.$http.get("users", {
-        params: this.queryInfo,
-      });
-      if (res.meta.status !== 200) {
-        return this.$message.error("获取用户列表失败！");
-      }
-      this.userlist = res.data.users;
-      this.total = res.data.total;
+    getPage(data) {
+      this.userlist = data.users;
     },
-    // 监听pagesize改变的事件
-    handleSizeChange(newSize) {
-      // console.log(newSize);
-      this.queryInfo.pagesize = newSize;
-      this.getUserList();
-    },
-    // 监听页码值改变的事件
-    handleCurrentChange(newPage) {
-      // console.log(newPage);
-      this.queryInfo.pagenum = newPage;
-      // 重新获取数据
-      this.getUserList();
+    getUserList() {
+      this.$refs.page.paginate();
     },
     // 监听switch开关状态
     async userstatechanged(userinfo) {
@@ -463,10 +430,10 @@ export default {
       this.setRoleDivialogVisible = false;
     },
     // 监听分配角色对话框的关闭时间
-    setRoleDialogClosed(){
-      this.selectRoleId=''
-      this.userinfo={}
-    }
+    setRoleDialogClosed() {
+      this.selectRoleId = "";
+      this.userinfo = {};
+    },
   },
 };
 </script>

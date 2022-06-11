@@ -28,7 +28,10 @@ import {
     Tag,
     Tree,
     Select,
-    Option
+    Option,
+    Cascader,
+    Dropdown,
+    DropdownMenu
 } from 'element-ui'
 
 
@@ -58,6 +61,9 @@ Vue.use(Tag)
 Vue.use(Tree)
 Vue.use(Select)
 Vue.use(Option)
+Vue.use(Cascader)
+Vue.use(Dropdown)
+Vue.use( DropdownMenu)
 // 把弹框组件Message需要单独挂载到Vue原型对象上
 Vue.prototype.$message = Message
 Vue.prototype.$confirm = MessageBox.confirm
