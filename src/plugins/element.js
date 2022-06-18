@@ -31,7 +31,10 @@ import {
     Option,
     Cascader,
     Dropdown,
-    DropdownMenu
+    DropdownMenu,
+    Alert,
+    Tabs,
+    TabPane 
 } from 'element-ui'
 
 
@@ -64,6 +67,9 @@ Vue.use(Option)
 Vue.use(Cascader)
 Vue.use(Dropdown)
 Vue.use( DropdownMenu)
+Vue.use(Alert)
+Vue.use(Tabs)
+Vue.use(TabPane)
 // 把弹框组件Message需要单独挂载到Vue原型对象上
 Vue.prototype.$message = Message
 Vue.prototype.$confirm = MessageBox.confirm
