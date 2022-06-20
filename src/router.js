@@ -8,8 +8,9 @@ import Rights from './components/power/rights.vue'
 import Roles from './components/power/roles.vue'
 import Cate from './components/goods/cate.vue'
 import Params from './components/goods/params.vue'
-import GoodsList from './components/goods/List.vue'
+import GoodsList from './components/goods/list.vue'
 import Add from './components/goods/Add.vue'
+import Order from './components/order/Order.vue'
 Vue.use(VueRouter);
 
 const router = new VueRouter({
@@ -46,6 +47,9 @@ const router = new VueRouter({
                 },
                 {
                     path:'/goods/add',component:Add
+                },
+                {
+                    path:'/orders',component:Order
                 }
             ]
         }

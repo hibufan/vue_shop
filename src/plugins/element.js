@@ -39,10 +39,12 @@ import {
     Step,
     CheckboxGroup,
     Checkbox,
-    Upload  
+    Upload,
+    Timeline,
+    TimelineItem
 } from 'element-ui'
-
-
+// import Timeline from '../plugins/timeline/index'
+// import TimelineItem from '../plugins/timeline-item/index'
 Vue.use(Button)
 Vue.use(Form)
 Vue.use(FormItem)
@@ -80,6 +82,8 @@ Vue.use(Step)
 Vue.use(CheckboxGroup)
 Vue.use(Checkbox)
 Vue.use(Upload)
+Vue.use(Timeline)
+Vue.use(TimelineItem)
 // 把弹框组件Message需要单独挂载到Vue原型对象上
 Vue.prototype.$message = Message
 Vue.prototype.$confirm = MessageBox.confirm
