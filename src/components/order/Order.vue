@@ -14,7 +14,7 @@
             placeholder="请输入内容"
             v-model="query"
             clearable
-            @click="getorderList"
+            @clear="getorderList"
           >
             <el-button
               slot="append"
@@ -53,7 +53,7 @@
           </template>
         </el-table-column>
         <el-table-column label="操作" width="180px">
-          <template slot-scope="scope">
+          <template >
             <el-button
               type="primary"
               icon="el-icon-edit"
@@ -163,9 +163,9 @@ export default {
       this.$refs.page.paginate();
     },
     getPage(data) {
-      console.log(data);
+      // console.log(data);
       this.orderlist = data.goods;
-        console.log(this.orderlist);
+        // console.log(this.orderlist);
     },
     // 展示修改地址的对话框
     showBox() {

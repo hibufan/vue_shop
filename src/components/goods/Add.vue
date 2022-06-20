@@ -137,11 +137,12 @@ export default {
       activeIndex: "0",
       addForm: {
         goods_name: "",
-        goods_price: 0,
-        goods_weight: 0,
-        goods_number: 0,
+        goods_price: '',
+        goods_weight: '',
+        goods_number: '',
         // 商品所属的分类数组
         goods_cat: [],
+        attrs:[],
         // 存放上传图片的临时路径
         pics: [],
         //
@@ -318,13 +319,13 @@ export default {
             attr_id: item.attr_id,
             attr_value: item.attr_vals.join(" "),
           };
-          this.addForm.attrs.push(newInfo);
+          from.attrs.push(newInfo);
         });
         this.onlyTableData.forEach((item) => {
           const newInfo = { attr_id: item.attr_id, attr_value: item.attr_vals };
-          this.addForm.attrs.push(newInfo);
+          from.attrs .push(newInfo);
         });
-        from.attrs = this.addForm.attrs;
+     
         // 发起请求添加商品 
         // 商品的名称，必须唯一的
         const { data: res } = await this.$http.post("goods", from);
