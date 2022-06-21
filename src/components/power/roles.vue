@@ -17,7 +17,7 @@
         >
       </el-row>
       <!-- 角色列表 -->
-      <el-table :data="rolelist" border stripe>
+      <el-table :data="rolelist" border stripe row-key="id">
         <!-- 展开列 -->
         <el-table-column type="expand">
           <template slot-scope="scope">
@@ -400,16 +400,18 @@ export default {
       ];
       //   拼接成字符串
       const idStr = keys.join(",");
-    //   发起请求
-   const{data:res}= await this.$http.post(`roles/${this.roleId}/rights`,{rids:idStr})
-       if(res.meta.status!==200){
-        return this.$message.error('分配权限失败')
-    }
-    this.$message.success('分配权限成功')
-    this.getRoleList()
-    this.setRightDialogVisible=false
+      //   发起请求
+      const { data: res } = await this.$http.post(
+        `roles/${this.roleId}/rights`,
+        { rids: idStr }
+      );
+      if (res.meta.status !== 200) {
+        return this.$message.error("分配权限失败");
+      }
+      this.$message.success("分配权限成功");
+      this.getRoleList();
+      this.setRightDialogVisible = false;
     },
-  
   },
 };
 </script>
