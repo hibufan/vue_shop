@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueRouter from 'vue-router'
+<<<<<<< HEAD
 // import Login from './components/login.vue'
 // import Home from './components/home.vue'
 // import welcome from './components/welcome.vue'
@@ -38,6 +39,20 @@ const Order = () => import(/* webpackChunkName:"order" */ './components/order/Or
 // import Order from './components/order/Order.vue'
 const Report = () => import(/* webpackChunkName:"report" */ './components/report/Report.vue')
 // import Report from './components/report/Report.vue'
+=======
+import Login from './components/login.vue'
+import Home from './components/home.vue'
+import welcome from './components/welcome.vue'
+import users from './components/user/users.vue'
+import Rights from './components/power/rights.vue'
+import Roles from './components/power/roles.vue'
+import Cate from './components/goods/cate.vue'
+import Params from './components/goods/params.vue'
+import GoodsList from './components/goods/list.vue'
+import Add from './components/goods/Add.vue'
+import Order from './components/order/Order.vue'
+import Report from './components/report/Report.vue'
+>>>>>>> 85029e5c38b9a0a0fbc830770e5d7f3ced3a6ddf
 Vue.use(VueRouter);
 
 const router = new VueRouter({
